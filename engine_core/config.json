@@ -1,0 +1,264 @@
+{
+  "configuration": {
+    "version": "1.0",
+    "description": "Rule-based AI configuration for background check screening system",
+    "last_updated": "2025-09-09"
+  },
+  "search_parameters": {
+    "date_of_birth": {
+      "attribute": "DOB",
+      "configuration": "Include Only Exact DOB",
+      "enabled": true,
+      "description": "Flag to include only results with exact DOB match"
+    },
+    "lookback_period": {
+      "selected_period": 10,
+      "unit": "years",
+      "description": "Time period to search back from current date",
+      "available_options": [
+        { "period": 3, "years": 3, "enabled": false },
+        { "period": 7, "years": 7, "enabled": false },
+        { "period": 10, "years": 10, "enabled": true },
+        { "period": 20, "years": 20, "enabled": false }
+      ]
+    }
+  },
+  "record_categories": {
+    "description": "Types of records to include in search",
+    "categories": [
+      {
+        "category": "Criminal/traffic",
+        "input_key": "criminal_traffic",
+        "enabled": true,
+        "description": "Criminal records and traffic infractions"
+      },
+      {
+        "category": "Sex Offender",
+        "input_key": "sex_offender", 
+        "enabled": true,
+        "description": "Sex Offender Registry data"
+      },
+      {
+        "category": "Patriot",
+        "input_key": "patriot",
+        "enabled": true,
+        "description": "International and National Lists covering but not limited to watchlists, registries and sanctions"
+      },
+      {
+        "category": "Sanctions",
+        "input_key": "sanctions",
+        "enabled": false,
+        "description": "Sanctions lists and related regulatory data"
+      },
+      {
+        "category": "Identity Verification",
+        "input_key": "identity_verification", 
+        "enabled": false,
+        "description": "Identity verification and authentication records"
+      }
+    ]
+  },
+  "charge_classification": {
+    "description": "Charge severity levels to include",
+    "types": [
+      {
+        "charge_type": "Felony",
+        "input_key": "felony",
+        "enabled": true,
+        "description": "the most severe class of charges",
+        "severity_weight": 3
+      },
+      {
+        "charge_type": "Misdemeanor", 
+        "input_key": "misdemeanor",
+        "enabled": true,
+        "description": "criminal charges, but not as severe as felonies",
+        "severity_weight": 2
+      },
+      {
+        "charge_type": "Petty Offense",
+        "input_key": "petty_offense",
+        "enabled": false,
+        "description": "these are often infractions or violations which are not criminal in nature",
+        "severity_weight": 1
+      },
+      {
+        "charge_type": "Traffic",
+        "input_key": "traffic",
+        "enabled": false, 
+        "description": "traffic violations and related infractions",
+        "severity_weight": 1
+      }
+    ]
+  },
+  "disposition_filters": {
+    "description": "Case outcome filters",
+    "dispositions": [
+      {
+        "disposition": "Conviction",
+        "input_key": "conviction",
+        "enabled": true,
+        "description": "guilty, the defendant was convicted of the charge.",
+        "risk_impact": "high"
+      },
+      {
+        "disposition": "Dismissed", 
+        "input_key": "dismissed",
+        "enabled": false,
+        "description": "thrown out or dismissed by the court.",
+        "risk_impact": "none"
+      },
+      {
+        "disposition": "Pending",
+        "input_key": "pending", 
+        "enabled": true,
+        "description": "the outcome of the case has not been determined.",
+        "risk_impact": "medium"
+      },
+      {
+        "disposition": "Acquitted",
+        "input_key": "acquitted",
+        "enabled": false,
+        "description": "found not guilty by the court.",
+        "risk_impact": "none"
+      },
+      {
+        "disposition": "No Contest",
+        "input_key": "no_contest",
+        "enabled": true,
+        "description": "defendant accepts conviction without admitting guilt.",
+        "risk_impact": "medium"
+      }
+    ]
+  },
+  "risk_scoring": {
+    "description": "Risk assessment categories and scoring",
+    "risk_levels": {
+      "High": {
+        "score_weight": 10,
+        "auto_flag": true,
+        "description": "Highest risk items requiring immediate attention"
+      },
+      "Med": {
+        "score_weight": 5,
+        "auto_flag": false,
+        "description": "Medium risk items requiring review"
+      },
+      "Low": {
+        "score_weight": 2,
+        "auto_flag": false,  
+        "description": "Lower risk items for informational purposes"
+      },
+      "Unscored": {
+        "score_weight": 1,
+        "auto_flag": false,
+        "description": "Items without assigned risk scores"
+      }
+    },
+    "categories": [
+      {
+        "category": "Criminal Intent",
+        "subcategories": ["Accessory", "Court Orders", "Obstruction"],
+        "enabled": true,
+        "base_weight": 1.0
+      },
+      {
+        "category": "Violence", 
+        "subcategories": ["Assault", "Battery", "Domestic Violence", "Threats"],
+        "enabled": true,
+        "base_weight": 1.5
+      },
+      {
+        "category": "Sexual",
+        "subcategories": ["Sexual Assault", "Sexual Misconduct", "Child Related"],
+        "enabled": true,
+        "base_weight": 2.0
+      },
+      {
+        "category": "Homicide",
+        "subcategories": ["Murder", "Manslaughter", "Vehicular Homicide"], 
+        "enabled": true,
+        "base_weight": 2.5
+      },
+      {
+        "category": "Theft & Property",
+        "subcategories": ["Theft", "Burglary", "Robbery", "Vandalism"],
+        "enabled": true,
+        "base_weight": 1.0
+      },
+      {
+        "category": "Fraud & Deception",
+        "subcategories": ["Fraud", "Forgery", "Identity Theft", "Embezzlement"],
+        "enabled": true,
+        "base_weight": 1.2
+      },
+      {
+        "category": "Drugs & Alcohol",
+        "subcategories": ["Drug Possession", "Drug Distribution", "DUI/DWI"],
+        "enabled": true,
+        "base_weight": 1.0
+      },
+      {
+        "category": "Vehicles & Traffic",
+        "subcategories": ["Traffic Violations", "Reckless Driving", "License Issues"],
+        "enabled": true,
+        "base_weight": 0.8
+      },
+      {
+        "category": "Security",
+        "subcategories": ["Weapons", "Terrorism", "Espionage"],
+        "enabled": true,
+        "base_weight": 2.0
+      },
+      {
+        "category": "Statutory", 
+        "subcategories": ["Regulatory Violations", "Licensing Issues"],
+        "enabled": true,
+        "base_weight": 0.7
+      },
+      {
+        "category": "Unclassified",
+        "subcategories": ["Other", "Unknown"],
+        "enabled": true,
+        "base_weight": 1.0
+      }
+    ]
+  },
+  "scoring_rules": {
+    "description": "Rules for calculating overall risk scores",
+    "algorithm": "weighted_sum",
+    "thresholds": {
+      "low_risk": { "min": 0, "max": 10 },
+      "medium_risk": { "min": 11, "max": 25 },
+      "high_risk": { "min": 26, "max": 50 },
+      "critical_risk": { "min": 51, "max": 100 }
+    },
+    "modifiers": {
+      "recency_factor": {
+        "within_1_year": 1.5,
+        "within_3_years": 1.2,
+        "within_5_years": 1.0,
+        "over_5_years": 0.8
+      },
+      "frequency_factor": {
+        "single_incident": 1.0,
+        "multiple_incidents": 1.3,
+        "pattern_behavior": 1.8
+      }
+    }
+  },
+  "output_configuration": {
+    "include_dismissed_cases": false,
+    "include_pending_cases": true,
+    "include_detailed_descriptions": true,
+    "sort_by": "risk_score_desc",
+    "group_by": "category",
+    "max_results_per_category": 50
+  },
+  "compliance": {
+    "fcra_compliant": true,
+    "state_regulations": ["applicable_state_codes"],
+    "data_retention_days": 2555,
+    "audit_trail_required": true
+  }
+}

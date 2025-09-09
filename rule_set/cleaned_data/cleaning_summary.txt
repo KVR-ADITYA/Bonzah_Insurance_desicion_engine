@@ -1,0 +1,38 @@
+CSV Data Cleaning Summary
+==============================
+
+File: deposition.csv
+  Final shape: (5, 4)
+  Columns: ['Disposition', 'Disposition (input)', "Filter Yes = Include No = Don't Include", 'Description']
+  Data types: {'Disposition': dtype('O'), 'Disposition (input)': dtype('O'), "Filter Yes = Include No = Don't Include": dtype('O'), 'Description': dtype('O')}
+
+File: dob.csv
+  Final shape: (1, 4)
+  Columns: ['Attribute', 'Configuration', 'Unnamed: 2', "Filter Yes = Include No = Don't Include"]
+  Data types: {'Attribute': dtype('O'), 'Configuration': dtype('O'), 'Unnamed: 2': dtype('O'), "Filter Yes = Include No = Don't Include": dtype('O')}
+
+File: look_back.csv
+  Final shape: (4, 3)
+  Columns: ['Lookback Period', 'Lookback Period (input)', 'Please select ONE']
+  Data types: {'Lookback Period': dtype('O'), 'Lookback Period (input)': dtype('float64'), 'Please select ONE': dtype('O')}
+
+File: record_classes.csv
+  Final shape: (5, 4)
+  Columns: ['Record Category', 'Record Category (input)', "Filter Yes = Include No = Don't Include", 'Description']
+  Data types: {'Record Category': dtype('O'), 'Record Category (input)': dtype('O'), "Filter Yes = Include No = Don't Include": dtype('O'), 'Description': dtype('O')}
+
+File: risk_score.csv
+  Final shape: (255, 7)
+  Columns: ['Category', 'SubCategory', 'SubSubCategory', 'Risk Score', 'SubSubCategory (input)', "Filter Yes = Include No = Don't Include", 'Description']
+  Data types: {'Category': dtype('O'), 'SubCategory': dtype('O'), 'SubSubCategory': dtype('O'), 'Risk Score': dtype('O'), 'SubSubCategory (input)': dtype('O'), "Filter Yes = Include No = Don't Include": dtype('O'), 'Description': dtype('O')}
+
+File: categories1.csv
+  Final shape: (255, 6)
+  Columns: ['Category', 'SubCategory', 'SubSubCategory', 'SubSubCategory (input)', "Filter Yes = Include No = Don't Include", 'Description']
+  Data types: {'Category': dtype('O'), 'SubCategory': dtype('O'), 'SubSubCategory': dtype('O'), 'SubSubCategory (input)': dtype('O'), "Filter Yes = Include No = Don't Include": dtype('O'), 'Description': dtype('O')}
+
+File: charge_type_class.csv
+  Final shape: (4, 4)
+  Columns: ['Charge Type', 'Charge Type (input)', "Filter Yes = Include No = Don't Include", 'Description']
+  Data types: {'Charge Type': dtype('O'), 'Charge Type (input)': dtype('O'), "Filter Yes = Include No = Don't Include": dtype('O'), 'Description': dtype('O')}
+
